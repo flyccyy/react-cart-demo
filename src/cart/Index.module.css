@@ -1,0 +1,11 @@
+.title {
+    margin-top: 0;
+    height: 200px;
+    font-size: 100px;
+    font-weight: 900;
+    background-color: #ff69b4;
+    color: #fff;
+}
+p {
+    font-size: 20px;
+}
