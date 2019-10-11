@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import {Button} from 'antd'
-import styles from './GoodsList.module.css'
+import { Button } from "antd";
+import styles from "./GoodsList.module.css";
+import { connect } from "react-redux";
+import { addGoods } from "./store/actionCreator";
 
-export default class GoodsList extends Component {
+class GoodsList extends Component {
   constructor() {
     super();
     this.state = {
@@ -43,19 +45,42 @@ export default class GoodsList extends Component {
     };
   }
   render() {
-    return <div>
+    return (
+      <div>
         <ul className={styles.container}>
-            {
-                this.state.fruitList.map(item=>{
-                    return <li key={item.id} className={styles.liObj}>
-                        <img src={item.url} alt="" style={{width:100,height:80}}/>
-                        <p>商品名：{item.name}</p>
-                        <p>￥:{item.price}</p>
-                        <Button type="primary" style={{backgroundColor:'#67c23a',borderColor:'#67c23a'}}>加入购物车</Button>
-                    </li>
-                })
-            }
+          {this.state.fruitList.map(item => {
+            return (
+              <li key={item.id} className={styles.liObj}>
+                <img src={item.url} alt="" className={styles.img} />
+                <p>商品名：{item.name}</p>
+                <p>￥:{item.price}</p>
+                <Button
+                  type="primary"
+                  style={{
+                    backgroundColor: "#67c23a",
+                    borderColor: "#67c23a",
+                    marginTop: "10px"
+                  }}
+                  onClick={() => this.props.add(item)}
+                >
+                  加入购物车
+                </Button>
+              </li>
+            );
+          })}
         </ul>
-    </div>;
+      </div>
+    );
   }
 }
+
+export default connect(
+  null,
+  dispatch => {
+    return {
+      add: goods => {
+        dispatch(addGoods(goods));
+      }
+    };
+  }
+)(GoodsList);

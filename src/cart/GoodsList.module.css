@@ -2,6 +2,7 @@
     display: flex;
     margin: 0;
     padding: 0;
+    list-style:none;
 }
 .liObj{
     width: 200px;
@@ -11,5 +12,13 @@
     text-align: center;
 }
 p {
+    font-size: 18px;
     padding: 0;
+    margin: 0;
+}
+.img{
+    width: 180px;
+    height: 180px;
+    display: block;
+    margin: 10px auto 0;
 }
